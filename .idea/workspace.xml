@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50947991-e88b-4350-b548-5d98e9f18954" name="Changes" comment="v1.2.1">
+    <list default="true" id="50947991-e88b-4350-b548-5d98e9f18954" name="Changes" comment="v1.3">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/SparseMultiplier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/COOMatrixGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/COOMatrixGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/CompressorCRS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/CompressorCRS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/Transponder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/Transponder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/MatrixMarketReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/MatrixMarketReader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697551256157</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="v1.3">
+      <created>1697553297622</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1697553297622</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -115,6 +126,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Compressor" />
     <MESSAGE value="v1.2.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.2.1" />
+    <MESSAGE value="v1.3" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.3" />
   </component>
 </project>

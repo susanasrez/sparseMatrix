@@ -1,13 +1,10 @@
 package org.example.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class COOMatrixGenerator {
 
-    public static Map<String, Object> generateRandomCOOMatrix(int n, double density) {
+    public static Map<String, ArrayList<?>> generateRandomCOOMatrix(int n, double density) {
         if (density < 0.0 || density > 1.0) {
             throw new IllegalArgumentException("Density must be in the range [0, 1].");
         }
@@ -34,7 +31,9 @@ public class COOMatrixGenerator {
             cooValues.add(value);
         }
 
-        Map<String, Object> cooMatrix = new HashMap<>();
+        sortCOOMatrixByRows(cooRows, cooColumns, cooValues);
+
+        Map<String, ArrayList<?>> cooMatrix = new HashMap<>();
         cooMatrix.put("Rows", cooRows);
         cooMatrix.put("Columns", cooColumns);
         cooMatrix.put("Values", cooValues);
@@ -42,7 +41,7 @@ public class COOMatrixGenerator {
         return cooMatrix;
     }
 
-    public static void showResult(Map<String,Object> cooMatrix){
+    public static void showResult(Map<String,ArrayList<?>> cooMatrix){
         ArrayList<Integer> cooRows = (ArrayList<Integer>) cooMatrix.get("Rows");
         ArrayList<Integer> cooColumns = (ArrayList<Integer>) cooMatrix.get("Columns");
         ArrayList<Double> cooValues = (ArrayList<Double>) cooMatrix.get("Values");
@@ -53,5 +52,33 @@ public class COOMatrixGenerator {
             double value = cooValues.get(i);
             System.out.println("Row: " + row + ", Col: " + col + ", Value: " + value);
         }
+    }
+
+    public static void sortCOOMatrixByRows(ArrayList<Integer> rows, ArrayList<Integer> columns, ArrayList<Double> values) {
+        int n = rows.size();
+        Integer[] indices = new Integer[n];
+        for (int i = 0; i < n; i++) {
+            indices[i] = i;
+        }
+
+        Arrays.sort(indices, (a, b) -> rows.get(a).compareTo(rows.get(b)));
+
+        ArrayList<Integer> sortedRows = new ArrayList<>();
+        ArrayList<Integer> sortedColumns = new ArrayList<>();
+        ArrayList<Double> sortedValues = new ArrayList<>();
+
+        for (int i : indices) {
+            sortedRows.add(rows.get(i));
+            sortedColumns.add(columns.get(i));
+            sortedValues.add(values.get(i));
+        }
+
+        rows.clear();
+        columns.clear();
+        values.clear();
+
+        rows.addAll(sortedRows);
+        columns.addAll(sortedColumns);
+        values.addAll(sortedValues);
     }
 }

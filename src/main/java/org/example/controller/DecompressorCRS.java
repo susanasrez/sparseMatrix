@@ -6,16 +6,20 @@ import java.util.Map;
 
 public class DecompressorCRS {
 
-    public double[][] convertCRStoMatrix(int[] row_ptr, int[] colInd, double[] values){
-        int numRows = row_ptr.length-1;
-        int numCols = row_ptr.length-1;
+    public double[][] convertCRStoMatrix(Map<String, ArrayList<?>> crsMatrix){
+        ArrayList<?> rowPtrList = crsMatrix.get("row_ptr");
+        ArrayList<?> colIndList = crsMatrix.get("col_ind");
+        ArrayList<?> valuesList = crsMatrix.get("values");
+
+        int numRows = rowPtrList.size() - 1;
+        int numCols = rowPtrList.size() - 1;
 
         double[][] decompressedMatrix = new double[numRows][numCols];
 
         for (int i = 0; i < numRows; i++) {
-            for (int j = row_ptr[i]; j < row_ptr[i + 1]; j++) {
-                int colIndex = colInd[j];
-                double value = values[j];
+            for (int j = (int) rowPtrList.get(i); j < (int) rowPtrList.get(i + 1); j++) {
+                int colIndex = (int) colIndList.get(j);
+                double value = (double) valuesList.get(j);
                 decompressedMatrix[i][colIndex] = value;
             }
         }
@@ -23,17 +27,21 @@ public class DecompressorCRS {
         return decompressedMatrix;
     }
 
-    public static Map<String, Object> convertCRSToCOO(int[] row_ptr, int[] colInd, double[] values, int numRows, int numCols) {
+    public static Map<String, Object> convertCRSToCOO(Map<String, ArrayList<?>> crsMatrix, int numRows) {
         ArrayList<Integer> cooRows = new ArrayList<>();
         ArrayList<Integer> cooColumns = new ArrayList<>();
         ArrayList<Double> cooValues = new ArrayList<>();
 
+        ArrayList<?> rowPtrList = crsMatrix.get("row_ptr");
+        ArrayList<?> colIndList = crsMatrix.get("col_ind");
+        ArrayList<?> valuesList = crsMatrix.get("values");
+
         for (int i = 0; i < numRows; i++) {
-            int start = row_ptr[i];
-            int end = row_ptr[i + 1];
+            int start = (int) rowPtrList.get(i);
+            int end = (int) rowPtrList.get(i + 1);
             for (int j = start; j < end; j++) {
-                int col = colInd[j];
-                double value = values[j];
+                int col = (int) colIndList.get(j);
+                double value = (double) valuesList.get(j);
 
                 cooRows.add(i + 1);
                 cooColumns.add(col + 1);

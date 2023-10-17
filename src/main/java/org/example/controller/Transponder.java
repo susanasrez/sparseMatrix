@@ -1,33 +1,41 @@
 package org.example.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Transponder {
 
-    public ArrayList<Integer> transposedRows;
-    public ArrayList<Integer> transposedColumns;
-    public ArrayList<Double> transposedValues;
+    public Map<String, ArrayList<?>> transposedMatrix;
 
     public Transponder() {
-        transposedRows = new ArrayList<>();
-        transposedColumns = new ArrayList<>();
-        transposedValues = new ArrayList<>();
+        transposedMatrix = new HashMap<>();
+        transposedMatrix.put("Rows", new ArrayList<>());
+        transposedMatrix.put("Columns", new ArrayList<>());
+        transposedMatrix.put("Values", new ArrayList<>());
     }
-    public void transposeCOO(ArrayList<Integer> rows, ArrayList<Integer> columns, ArrayList<Double> values) {
-        transposedRows = columns;
-        transposedColumns = rows;
-        transposedValues = values;
+    public void transposeCOO(Map<String, ArrayList<?>> matrix) {
+        transposedMatrix.put("Rows", matrix.get("Columns"));
+        transposedMatrix.put("Columns", matrix.get("Rows"));
+        transposedMatrix.put("Values", matrix.get("Values"));
     }
+    public Map<String, ArrayList<?>> getTransposedCOO() {
+        return transposedMatrix;
+    }
+
 
     public void printTransposedCOO() {
         System.out.println("Transposed COO format:");
-        for (int i = 0; i < transposedRows.size(); i++) {
-            int row = transposedRows.get(i);
-            int col = transposedColumns.get(i);
-            double value = transposedValues.get(i);
+        ArrayList<Integer> rows = (ArrayList<Integer>) transposedMatrix.get("Rows");
+        ArrayList<Integer> columns = (ArrayList<Integer>) transposedMatrix.get("Columns");
+        ArrayList<Double> values = (ArrayList<Double>) transposedMatrix.get("Values");
+
+        for (int i = 0; i < rows.size(); i++) {
+            int row = rows.get(i);
+            int col = columns.get(i);
+            double value = values.get(i);
             System.out.println("Row: " + row + ", Col: " + col + ", Value: " + value);
         }
     }
-
 
 }
