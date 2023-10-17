@@ -1,18 +1,24 @@
-package org.example;
+package org.example.model;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MatrixMarketReader {
 
     private String filePath;
-    private int n;
-    public double[][] matrix;
+    public int n;
+    public ArrayList<Integer> rows;
+    public ArrayList<Integer> columns;
+    public ArrayList<Double> values;
 
-    public MatrixMarketReader(String path){
+    public MatrixMarketReader(String path) {
         filePath = path;
+        rows = new ArrayList<>();
+        columns = new ArrayList<>();
+        values = new ArrayList<>();
     }
 
     public void readMatrixMarketFile() {
@@ -43,12 +49,12 @@ public class MatrixMarketReader {
     }
 
     public void showMatrix() {
-        System.out.println("Matrix:");
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                System.out.print(matrix[i][j] + "\t");
-            }
-            System.out.println();
+        System.out.println("Matrix (in COO format):");
+        for (int i = 0; i < rows.size(); i++) {
+            int row = rows.get(i);
+            int col = columns.get(i);
+            double value = values.get(i);
+            System.out.println("Row: " + row + ", Col: " + col + ", Value: " + value);
         }
     }
 
@@ -57,10 +63,9 @@ public class MatrixMarketReader {
             int row = Integer.parseInt(parts[0]) - 1;
             int col = Integer.parseInt(parts[1]) - 1;
             double value = Double.parseDouble(parts[2]);
-            if (matrix == null) {
-                matrix = new double[n][n];
-            }
-            matrix[row][col] = value;
+            rows.add(row);
+            columns.add(col);
+            values.add(value);
         }
     }
 }
