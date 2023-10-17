@@ -1,24 +1,15 @@
 package org.example.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CompressorCRS {
 
     private int[] row_ptr;
     private int[] colInd;
     private double[] values;
-    private Map<String, List<?>> CRSMatrix;
-    private int numRows;
-    private int numCols;
-
-    public CompressorCRS(Map<String, ArrayList<?>> cooMatrix, int numRows, int numCols) {
+    private final int numRows;
+    public CompressorCRS(Map<String, ArrayList<?>> cooMatrix, int numRows) {
         this.numRows = numRows;
-        this.numCols = numCols;
-        CRSMatrix = new HashMap<>();
 
         setupCRS(cooMatrix);
     }
@@ -39,9 +30,6 @@ public class CompressorCRS {
 
         initializeRowPtr(rows);
 
-        CRSMatrix.put("row_ptr", Arrays.asList(row_ptr));
-        CRSMatrix.put("col_ind", Arrays.asList(colInd));
-        CRSMatrix.put("values", Arrays.asList(values));
     }
 
     private void initializeRowPtr(List<Integer> rows) {
@@ -63,7 +51,29 @@ public class CompressorCRS {
         System.out.println("Values: " + Arrays.toString(values));
     }
 
-    public Map<String, List<?>> getCRSMatrix() {
+    public Map<String, ArrayList<?>> getCRSMatrix() {
+        Map<String, ArrayList<?>> CRSMatrix = new HashMap<>();
+
+        ArrayList<Integer> row_ptrList = new ArrayList<>();
+        for (int value : row_ptr) {
+            row_ptrList.add(value);
+        }
+
+        ArrayList<Integer> colIndList = new ArrayList<>();
+        for (int value : colInd) {
+            colIndList.add(value);
+        }
+
+        ArrayList<Double> valuesList = new ArrayList<>();
+        for (double value : values) {
+            valuesList.add(value);
+        }
+
+        CRSMatrix.put("row_ptr", row_ptrList);
+        CRSMatrix.put("col_ind", colIndList);
+        CRSMatrix.put("values", valuesList);
+
         return CRSMatrix;
     }
+
 }
