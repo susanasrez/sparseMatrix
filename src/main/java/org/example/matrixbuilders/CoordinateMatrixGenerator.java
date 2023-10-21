@@ -28,7 +28,7 @@ public class CoordinateMatrixGenerator implements MatrixBuilder {
                 isUnique = !containsCoordinate(coordinates, row, col);
             }
 
-            long value = random.nextLong();
+            double value = random.nextDouble();
             coordinates.add(new Coordinate(row, col, value));
         }
 
@@ -44,8 +44,14 @@ public class CoordinateMatrixGenerator implements MatrixBuilder {
         return false;
     }
 
+
     @Override
-    public void set(int i, int j, long value) {
+    public void set(int i, int j, double value) {
+
+    }
+
+    @Override
+    public void setMatrix(Matrix c) {
 
     }
 
@@ -53,4 +59,5 @@ public class CoordinateMatrixGenerator implements MatrixBuilder {
     public Matrix get() {
         return null;
     }
+
 }

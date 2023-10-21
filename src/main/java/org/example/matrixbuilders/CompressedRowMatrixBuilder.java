@@ -1,32 +1,35 @@
 package org.example.matrixbuilders;
 
 import org.example.Matrix;
-import org.example.matrix.CCSColumn;
-import org.example.matrix.CRSRow;
 import org.example.matrix.CompressorCRSMatrix;
 import org.example.matrix.Coordinate;
 
 public class CompressedRowMatrixBuilder extends SparseMatrixBuilder{
-    private CRSRow[] rowPointers;
-    private int[] colIndices;
-    private long[] values;
+    private int[] rowPointers;
+    private int[] colInd;
+    private double[] values;
     private int[] rowStarts;
     private int[] rowEnds;
 
     public CompressedRowMatrixBuilder(int size) {
         super(size);
-        rowPointers = new CRSRow[size + 1];
-        colIndices = new int[coordinates.size()];
-        values = new long[coordinates.size()];
+        rowPointers = new int[size + 1];
         rowStarts = new int[size];
         rowEnds = new int[size];
     }
 
     @Override
-    public Matrix get() {
+    public void set(int i, int j, double value) {
+        coordinates.add(new Coordinate(i, j, value));
+    }
+
+    @Override
+    public CompressorCRSMatrix get() {
+        colInd = new int[coordinates.size()];
+        values = new double[coordinates.size()];
         fillCRSArrays();
         calculateRowEnds();
-        return new CompressorCRSMatrix(size, rowPointers, colIndices, values);
+        return new CompressorCRSMatrix(size, rowPointers, colInd, values);
     }
 
     private void fillCRSArrays() {
@@ -35,10 +38,10 @@ public class CompressedRowMatrixBuilder extends SparseMatrixBuilder{
         for (Coordinate coordinate : coordinates) {
             int i = coordinate.i();
             int j = coordinate.j();
-            long value = coordinate.value();
+            double value = coordinate.value();
 
             rowStarts[i]++;
-            colIndices[columnIndex] = j;
+            colInd[columnIndex] = j;
             values[columnIndex] = value;
 
             columnIndex++;
@@ -50,10 +53,21 @@ public class CompressedRowMatrixBuilder extends SparseMatrixBuilder{
 
         for (int i = 0; i < size; i++) {
             rowEnds[i] = cumSum + rowStarts[i];
+            rowPointers[i] = cumSum;
             cumSum = rowEnds[i];
-            rowPointers[i] = new CRSRow(rowStarts[i], rowEnds[i]);
         }
 
-        rowPointers[size] = new CRSRow(rowEnds[size - 1], rowEnds[size - 1]);
+        rowPointers[size] = coordinates.size();
+    }
+
+    public void setMatrix(Matrix coordinateMatrix) {
+        for (int i = 0; i < coordinateMatrix.size(); i++) {
+            for (int j = 0; j < coordinateMatrix.size(); j++) {
+                double value = coordinateMatrix.get(i, j);
+                if (value != 0) {
+                    coordinates.add(new Coordinate(i, j, value));
+                }
+            }
+        }
     }
 }

@@ -2,5 +2,5 @@ package org.example;
 
 public interface Matrix {
     int size();
-    long get(int i, int j);
+    double get(int i, int j);
 }

@@ -3,9 +3,9 @@ package org.example.matrix;
 import org.example.Matrix;
 
 public class DenseMatrix implements Matrix {
-    private final long[][] values;
+    private final double[][] values;
 
-    public DenseMatrix(long[][] values) {
+    public DenseMatrix(double[][] values) {
         this.values = values;
     }
 
@@ -15,7 +15,7 @@ public class DenseMatrix implements Matrix {
     }
 
     @Override
-    public long get(int i, int j) {
+    public double get(int i, int j) {
         return values[i][j];
     }
 }

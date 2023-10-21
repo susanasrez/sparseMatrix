@@ -19,11 +19,11 @@ public class SparseMatrixMultiplication implements MatrixMultiplication {
 
         for (int i = 0; i < a.size; i++) {
             for (int j = 0; j < b.size; j++) {
-                int rowStart= a.rowPointers[i].rowStart();
-                int rowEnd = a.rowPointers[i+1].rowEnd();
-                int colStart= b.columnPointers[j].colStart();
-                int colEnd = b.columnPointers[j+1].colEnd();
-                long s = 0;
+                int rowStart= a.rowPointers[i];
+                int rowEnd = a.rowPointers[i+1];
+                int colStart= b.columnPointers[j];
+                int colEnd = b.columnPointers[j+1];
+                double s = 0;
 
                 while (rowStart < rowEnd && colStart < colEnd){
                     int aa = a.colInd[rowStart];

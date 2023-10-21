@@ -2,12 +2,13 @@ package org.example.matrixbuilders;
 
 import org.example.Matrix;
 import org.example.MatrixBuilder;
+import org.example.matrix.CoordinateMatrix;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
+import java.math.BigDecimal;
 
 
 public class MatrixMarketReader implements MatrixBuilder {
@@ -16,7 +17,7 @@ public class MatrixMarketReader implements MatrixBuilder {
     private CoordinateMatrixBuilder matrixBuilder;
 
     public MatrixMarketReader(String path) {
-        filePath = path;
+        filePath = "src/main/resources/" + path;
         matrixBuilder = new CoordinateMatrixBuilder(0);
     }
 
@@ -51,18 +52,25 @@ public class MatrixMarketReader implements MatrixBuilder {
         if (parts.length == 3) {
             int row = Integer.parseInt(parts[0]) - 1;
             int col = Integer.parseInt(parts[1]) - 1;
-            Long value = Long.parseLong(parts[2]);
-            matrixBuilder.set(row, col, (long) value);
+            double value = Double.parseDouble(parts[2]);
+            matrixBuilder.set(row, col, value);
         }
     }
 
     @Override
-    public void set(int i, int j, long value) {
+    public void set(int i, int j, double value) {
         matrixBuilder.set(i, j, value);
+    }
+
+    @Override
+    public void setMatrix(Matrix c) {
+
     }
 
     @Override
     public Matrix get() {
         return matrixBuilder.get();
     }
+
+
 }

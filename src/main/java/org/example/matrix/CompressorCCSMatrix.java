@@ -6,11 +6,11 @@ import java.util.stream.IntStream;
 public class CompressorCCSMatrix extends SparseMatrix {
     public final int size;
 
-    public final CCSColumn[] columnPointers;
+    public final int[] columnPointers;
     public final int[] rowInd;
-    public final long[] values;
+    public final double[] values;
 
-    public CompressorCCSMatrix(int size, CCSColumn[] columnPointers, int[] rowIndices, long[] values) {
+    public CompressorCCSMatrix(int size, int[] columnPointers, int[] rowIndices, double[] values) {
         this.size = size;
         this.columnPointers = columnPointers;
         this.rowInd = rowIndices;
@@ -24,16 +24,18 @@ public class CompressorCCSMatrix extends SparseMatrix {
     }
 
     @Override
-    public long get(int i, int j) {
-        int colStart = columnPointers[j].colStart();
-        int colEnd = columnPointers[j + 1].colEnd();
+    public double get(int i, int j) {
+        int colStart = columnPointers[j];
+        int colEnd = columnPointers[j+1];
 
         return IntStream.range(colStart, colEnd)
                 .filter(k -> rowInd[k] == i)
-                .mapToLong(k -> values[k])
+                .mapToDouble(k -> values[k])
                 .findFirst()
                 .orElse(0L);
     }
+
+
 
 
 }

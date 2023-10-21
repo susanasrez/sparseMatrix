@@ -17,11 +17,11 @@ public class CoordinateMatrix extends SparseMatrix{
     }
 
     @Override
-    public long get(int i, int j) {
+    public double get(int i, int j) {
         return coordinates.stream()
                 .filter(c->c.i() == i & c.j() == j)
                 .findFirst()
                 .map(Coordinate::value)
-                .orElse(0L);
+                .orElse(0.0);
     }
 }

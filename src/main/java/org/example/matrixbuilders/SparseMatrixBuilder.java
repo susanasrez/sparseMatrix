@@ -1,7 +1,9 @@
 package org.example.matrixbuilders;
 
+import org.example.Matrix;
 import org.example.MatrixBuilder;
 import org.example.matrix.Coordinate;
+import org.example.matrix.CoordinateMatrix;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +17,9 @@ public abstract class SparseMatrixBuilder implements MatrixBuilder {
         this.coordinates = new ArrayList<>();
     }
 
-    @Override
-    public void set(int i, int j, long value) {
-        set(new Coordinate(i,j,value));
-    }
-
     public void set(Coordinate coordinate) {
         coordinates.add(coordinate);
     }
+
 
 }
