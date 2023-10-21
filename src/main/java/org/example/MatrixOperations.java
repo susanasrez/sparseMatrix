@@ -9,7 +9,7 @@ public class MatrixOperations {
 
     public static Matrix multiply(Matrix a, Matrix b) {
         if (a instanceof DenseMatrix && b instanceof DenseMatrix) {
-            return (Matrix) new DenseMatrixMultiplication().multiply(a, b);
+            return new DenseMatrixMultiplication().multiply(a, b);
         }
         else if (a instanceof CompressorCRSMatrix && b instanceof CompressorCCSMatrix) {
             return new SparseMatrixMultiplication().multiply(a, b);

@@ -1,25 +1,23 @@
-package org.example.model;
+package org.example.matrixbuilders;
+
+import org.example.Matrix;
+import org.example.MatrixBuilder;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-public class MatrixMarketReader {
 
+
+public class MatrixMarketReader implements MatrixBuilder {
     private String filePath;
-    public int n;
-    public Map<String, ArrayList<?>> matrix;
+    private int n;
+    private CoordinateMatrixBuilder matrixBuilder;
 
     public MatrixMarketReader(String path) {
         filePath = path;
-        matrix = new HashMap<>();
-        matrix.put("Rows", new ArrayList<>());
-        matrix.put("Columns", new ArrayList<>());
-        matrix.put("Values", new ArrayList<>());
+        matrixBuilder = new CoordinateMatrixBuilder(0);
     }
 
     public void readMatrixMarketFile() {
@@ -35,6 +33,7 @@ public class MatrixMarketReader {
                     if (notdata) {
                         notdata = false;
                         n = Integer.parseInt(parts[0]);
+                        matrixBuilder = new CoordinateMatrixBuilder(n);
                     } else {
                         constructionMatrix(parts);
                     }
@@ -48,32 +47,22 @@ public class MatrixMarketReader {
         }
     }
 
-    public void showMatrix() {
-        System.out.println("Matrix (in COO format):");
-        ArrayList<Integer> rows = (ArrayList<Integer>) matrix.get("row");
-        ArrayList<Integer> columns = (ArrayList<Integer>) matrix.get("col");
-        ArrayList<Double> values = (ArrayList<Double>) matrix.get("values");
-
-        for (int i = 0; i < rows.size(); i++) {
-            int row = rows.get(i);
-            int col = columns.get(i);
-            double value = values.get(i);
-            System.out.println("Row: " + row + ", Col: " + col + ", Value: " + value);
-        }
-    }
-
     public void constructionMatrix(String[] parts) {
         if (parts.length == 3) {
             int row = Integer.parseInt(parts[0]) - 1;
             int col = Integer.parseInt(parts[1]) - 1;
-            double value = Double.parseDouble(parts[2]);
-            ((ArrayList<Integer>) matrix.get("Rows")).add(row);
-            ((ArrayList<Integer>) matrix.get("Columns")).add(col);
-            ((ArrayList<Double>) matrix.get("Values")).add(value);
+            Long value = Long.parseLong(parts[2]);
+            matrixBuilder.set(row, col, (long) value);
         }
     }
 
-    public Map<String, ArrayList<?>> getMatrixData() {
-        return matrix;
+    @Override
+    public void set(int i, int j, long value) {
+        matrixBuilder.set(i, j, value);
+    }
+
+    @Override
+    public Matrix get() {
+        return matrixBuilder.get();
     }
 }

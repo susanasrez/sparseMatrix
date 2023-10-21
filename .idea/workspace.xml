@@ -4,30 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50947991-e88b-4350-b548-5d98e9f18954" name="Changes" comment="v1.4.0">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Matrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/MatrixBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/MatrixOperations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/MatrixTransformations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/matrix/CCSColumn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/matrix/CRSRow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/matrix/CompressorCCSMatrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/matrix/CompressorCRSMatrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/matrix/Coordinate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/matrix/CoordinateMatrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/matrix/DenseMatrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/matrix/SparseMatrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/matrixbuilders/CompressedColumnMatrixBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/matrixbuilders/CompressedRowMatrixBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/matrixbuilders/CoordinateMatrixBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/matrixbuilders/DenseMatrixBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/matrixbuilders/SparseMatrixBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/operators/MatrixMultiplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/operators/matrixmultiplication/DenseMatrixMultiplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/operators/matrixmultiplication/SparseMatrixMultiplication.java" afterDir="false" />
+    <list default="true" id="50947991-e88b-4350-b548-5d98e9f18954" name="Changes" comment="v3.0.0">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/matrixbuilders/MatrixMarketReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MatrixOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MatrixOperations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/COOMatrixGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/matrixbuilders/CoordinateMatrixGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/CompressorCRS.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/DecompressorCRS.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/SparseMultiplier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/Transponder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/MatrixMarketReader.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +52,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/Susana/Desktop/Universidad/Tercero/Primer/BD/Benchmark.2/Benchmark"
+    "last_opened_file_path": "C:/Users/Susana/Desktop/Universidad/Tercero/Primer/BD/linear-algebra"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -149,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697561317488</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="v3.0.0">
+      <created>1697888952778</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1697888952778</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -169,6 +164,7 @@
     <MESSAGE value="v1.3" />
     <MESSAGE value="v1.3.1" />
     <MESSAGE value="v1.4.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.4.0" />
+    <MESSAGE value="v3.0.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="v3.0.0" />
   </component>
 </project>
