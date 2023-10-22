@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public class MatrixMarketReader implements MatrixBuilder {
     private String filePath;
     private int n;
-    private CoordinateMatrixBuilder matrixBuilder;
+    public CoordinateMatrixBuilder matrixBuilder;
 
     public MatrixMarketReader(String path) {
         filePath = "src/main/resources/" + path;

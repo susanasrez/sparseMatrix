@@ -1,7 +1,6 @@
 package org.example.matrixbuilders;
 
 import org.example.Matrix;
-import org.example.matrix.Coordinate;
 import org.example.matrix.CoordinateMatrix;
 
 

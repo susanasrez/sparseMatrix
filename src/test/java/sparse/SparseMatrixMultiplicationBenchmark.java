@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class SparseMatrixMultiplicationBenchmark {
 
     @Benchmark
-    public void multiplication(BenchmarkStateSparse.Operands operands) {
+    public void multiplication(BenchmarkStateRandomSparse.Operands operands) {
         Matrix matrixA = operands.matrixA;
         Matrix matrixB = operands.matrixB;
 
