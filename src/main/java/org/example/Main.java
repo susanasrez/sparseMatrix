@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.controller.Controller;
+import org.example.testSuite.TimeMarkStateSparse;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,6 +8,7 @@ public class Main {
         String dir = System.getProperty("user.dir");
         String filepath = dir + path;
 
-        new Controller(path);
+        //new Controller(path);
+        new TimeMarkStateSparse.Operands().setup();
     }
 }
