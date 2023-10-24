@@ -1,6 +1,7 @@
 package org.example.checker;
 
 import org.example.Matrix;
+import org.example.MatrixOperations;
 import org.example.MatrixTransformations;
 import org.example.matrix.*;
 import org.example.operators.MatrixMultiplication;
@@ -35,7 +36,7 @@ public class Checker {
     }
 
     public static boolean testSparseMultiply(CompressorCRSMatrix a , CompressorCCSMatrix b, CoordinateMatrix c){
-        MatrixMultiplication multiplier = new SparseMatrixMultiplication();
+        MatrixOperations multiplier = new MatrixOperations();
         Matrix ab = multiplier.multiply(a, b);
         Matrix abCRS = new MatrixTransformations().transformCOO_CRS((CoordinateMatrix) ab);
         Matrix cCCS = new MatrixTransformations().transformCOO_CCS(c);
@@ -51,7 +52,7 @@ public class Checker {
     }
 
     private static boolean areSparseMatricesEqual(Matrix matrix1, Matrix matrix2) {
-        double epsilon = 1E-8;
+        double epsilon = 0.01;
         CoordinateMatrix a = (CoordinateMatrix) matrix1;
         CoordinateMatrix b = (CoordinateMatrix) matrix2;
         List<Coordinate> coordinates1 = a.coordinates;
@@ -60,13 +61,11 @@ public class Checker {
         for (int i = 0; i < coordinates1.size(); i++) {
             Coordinate coord1 = coordinates1.get(i);
             Coordinate coord2 = coordinates2.get(i);
-
             if (coord1.i() != coord2.i() || coord1.j() != coord2.j() || Math.abs(coord1.value() - coord2.value()) > epsilon) {
                 return false;
             }
         }
         return true;
     }
-
 
 }

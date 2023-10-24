@@ -33,7 +33,7 @@ public class SparseMatrixMultiplication implements MatrixMultiplication {
                         rowStart++;
                         colStart++;
                     }
-                    else if ( aa <bb) rowStart++;
+                    else if ( aa < bb) rowStart++;
                     else colStart++;
                 }
                 if (s!= 0) builder.set(i, j, s);
