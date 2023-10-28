@@ -21,5 +21,4 @@ public class DenseMatrixMultiplication implements MatrixMultiplication {
         }
         return new DenseMatrix(c);
     }
-
 }

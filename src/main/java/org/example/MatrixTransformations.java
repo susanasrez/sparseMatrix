@@ -20,7 +20,8 @@ public class MatrixTransformations {
 
     public CompressorCRSMatrix transformCOO_CRS(CoordinateMatrix matrix){
         CompressedRowMatrixBuilder builder = new CompressedRowMatrixBuilder(matrix.size);
-        for (Coordinate coordinate : matrix.coordinates) {
+        CoordinateMatrix matrixSort = (CoordinateMatrix) matrix.getByRows();
+        for (Coordinate coordinate : matrixSort.coordinates) {
             builder.set(coordinate.i(),coordinate.j(),coordinate.value());
         }
 
@@ -29,7 +30,8 @@ public class MatrixTransformations {
 
     public CompressorCCSMatrix transformCOO_CCS(CoordinateMatrix matrix){
         CompressedColumnMatrixBuilder builder = new CompressedColumnMatrixBuilder(matrix.size);
-        for (Coordinate coordinate : matrix.coordinates) {
+        CoordinateMatrix matrixSort = (CoordinateMatrix) matrix.getSortCol();
+        for (Coordinate coordinate : matrixSort.coordinates) {
             builder.set(coordinate.i(),coordinate.j(),coordinate.value());
         }
         return builder.get();

@@ -4,7 +4,6 @@ import org.example.Matrix;
 import org.example.matrix.Coordinate;
 import org.example.matrix.CoordinateMatrix;
 
-
 public class CoordinateMatrixBuilder extends SparseMatrixBuilder {
 
     public CoordinateMatrixBuilder(int size) {
@@ -19,7 +18,10 @@ public class CoordinateMatrixBuilder extends SparseMatrixBuilder {
 
     @Override
     public Matrix get() {
-        return new CoordinateMatrix(size, coordinates);
+        return new CoordinateMatrix(size, coordinates).getByRows();
+    }
+    public Matrix getByCols() {
+        return new CoordinateMatrix(size, coordinates).getSortCol();
     }
 
     public void setMatrix(Matrix coordinateMatrix) {

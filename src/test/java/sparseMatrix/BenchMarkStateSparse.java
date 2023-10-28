@@ -5,7 +5,6 @@ import org.example.MatrixTransformations;
 import org.example.matrix.CompressorCCSMatrix;
 import org.example.matrix.CompressorCRSMatrix;
 import org.example.matrix.CoordinateMatrix;
-import org.example.matrixbuilders.CoordinateMatrixGenerator;
 import org.example.matrixbuilders.MatrixMarketReader;
 import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;

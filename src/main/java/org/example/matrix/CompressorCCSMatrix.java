@@ -1,11 +1,10 @@
 package org.example.matrix;
 
-
 import java.util.stream.IntStream;
 
 public class CompressorCCSMatrix extends SparseMatrix {
-    public final int size;
 
+    public final int size;
     public final int[] columnPointers;
     public final int[] rowInd;
     public final double[] values;
@@ -16,7 +15,6 @@ public class CompressorCCSMatrix extends SparseMatrix {
         this.rowInd = rowIndices;
         this.values = values;
     }
-
 
     @Override
     public int size() {
@@ -34,8 +32,4 @@ public class CompressorCCSMatrix extends SparseMatrix {
                 .findFirst()
                 .orElse(0L);
     }
-
-
-
-
 }

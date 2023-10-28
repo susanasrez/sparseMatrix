@@ -5,8 +5,8 @@ import org.example.MatrixBuilder;
 import org.example.matrix.CoordinateMatrix;
 import org.example.matrix.DenseMatrix;
 
-
 public class DenseMatrixBuilder implements MatrixBuilder {
+
     private final int size;
     private final double[][] values;
 
@@ -14,7 +14,6 @@ public class DenseMatrixBuilder implements MatrixBuilder {
         this.size = size;
         this.values = new double[size][size];
     }
-
 
     @Override
     public void set(int i, int j, double value) {
@@ -36,5 +35,4 @@ public class DenseMatrixBuilder implements MatrixBuilder {
     public Matrix get() {
         return new DenseMatrix(values);
     }
-
 }

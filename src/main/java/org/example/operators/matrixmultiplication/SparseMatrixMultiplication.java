@@ -6,16 +6,12 @@ import org.example.matrix.*;
 import org.example.matrixbuilders.CoordinateMatrixBuilder;
 import org.example.operators.MatrixMultiplication;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SparseMatrixMultiplication implements MatrixMultiplication {
     @Override
     public Matrix multiply(Matrix matrix_a, Matrix matrix_b) {
         CompressorCRSMatrix a = (CompressorCRSMatrix) matrix_a;
         CompressorCCSMatrix b = (CompressorCCSMatrix) matrix_b;
         MatrixBuilder builder = new CoordinateMatrixBuilder(a.size);
-        List<Coordinate> coordinateList = new ArrayList<>();
 
         for (int i = 0; i < a.size; i++) {
             for (int j = 0; j < b.size; j++) {

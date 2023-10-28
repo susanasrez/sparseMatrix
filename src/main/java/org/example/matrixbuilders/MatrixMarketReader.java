@@ -2,18 +2,14 @@ package org.example.matrixbuilders;
 
 import org.example.Matrix;
 import org.example.MatrixBuilder;
-import org.example.matrix.CoordinateMatrix;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.math.BigDecimal;
-
 
 public class MatrixMarketReader implements MatrixBuilder {
-    private String filePath;
-    private int n;
+
+    private final String filePath;
     public CoordinateMatrixBuilder matrixBuilder;
 
     public MatrixMarketReader(String path) {
@@ -33,7 +29,7 @@ public class MatrixMarketReader implements MatrixBuilder {
                     String[] parts = line.trim().split("\\s+");
                     if (notdata) {
                         notdata = false;
-                        n = Integer.parseInt(parts[0]);
+                        int n = Integer.parseInt(parts[0]);
                         matrixBuilder = new CoordinateMatrixBuilder(n);
                     } else {
                         constructionMatrix(parts);
@@ -41,8 +37,6 @@ public class MatrixMarketReader implements MatrixBuilder {
                 }
             }
 
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -63,14 +57,14 @@ public class MatrixMarketReader implements MatrixBuilder {
     }
 
     @Override
-    public void setMatrix(Matrix c) {
-
-    }
+    public void setMatrix(Matrix c) {}
 
     @Override
     public Matrix get() {
         return matrixBuilder.get();
     }
 
-
+    public Matrix getByCols() {
+        return matrixBuilder.getByCols();
+    }
 }

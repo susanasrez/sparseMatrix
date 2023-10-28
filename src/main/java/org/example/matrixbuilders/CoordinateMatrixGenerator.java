@@ -44,20 +44,16 @@ public class CoordinateMatrixGenerator implements MatrixBuilder {
         return false;
     }
 
-
     @Override
     public void set(int i, int j, double value) {
-
     }
 
     @Override
     public void setMatrix(Matrix c) {
-
     }
 
     @Override
     public Matrix get() {
         return null;
     }
-
 }

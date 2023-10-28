@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class SparseMatrixBuilder implements MatrixBuilder {
+
     protected final int size;
     protected List<Coordinate> coordinates;
 
@@ -18,6 +19,4 @@ public abstract class SparseMatrixBuilder implements MatrixBuilder {
     public void set(Coordinate coordinate) {
         coordinates.add(coordinate);
     }
-
-
 }

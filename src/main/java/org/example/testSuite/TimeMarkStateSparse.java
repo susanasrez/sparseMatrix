@@ -4,7 +4,6 @@ import org.example.Matrix;
 import org.example.MatrixOperations;
 import org.example.MatrixTransformations;
 import org.example.checker.Checker;
-import org.example.checker.Viewer;
 import org.example.matrix.CompressorCCSMatrix;
 import org.example.matrix.CompressorCRSMatrix;
 import org.example.matrix.CoordinateMatrix;
@@ -23,11 +22,10 @@ public class TimeMarkStateSparse {
             for (String file : files) {
                 MatrixMarketReader matrixMarketReader = new MatrixMarketReader(file);
                 matrixMarketReader.readMatrixMarketFile();
-                Matrix a = matrixMarketReader.get();
 
                 MatrixTransformations transformer = new MatrixTransformations();
-                CompressorCRSMatrix crsMatrixA = transformer.transformCOO_CRS((CoordinateMatrix) a);
-                CompressorCCSMatrix ccsMatrixB = transformer.transformCOO_CCS((CoordinateMatrix) a);
+                CompressorCRSMatrix crsMatrixA = transformer.transformCOO_CRS((CoordinateMatrix) matrixMarketReader.get());
+                CompressorCCSMatrix ccsMatrixB = transformer.transformCOO_CCS((CoordinateMatrix) matrixMarketReader.getByCols());
 
                 matrixA = crsMatrixA;
                 matrixB = ccsMatrixB;
@@ -40,16 +38,11 @@ public class TimeMarkStateSparse {
         }
 
         public static double multiplyTime(Matrix a, Matrix b) {
-            MatrixOperations matrixOperations = new MatrixOperations();
-
             double startTime = System.currentTimeMillis();
-            matrixC = matrixOperations.multiply(a, b);
+            matrixC = MatrixOperations.multiply(a, b);
             double endTime = System.currentTimeMillis();
 
-            double elapsedTime = endTime - startTime;
-            return elapsedTime;
+            return endTime - startTime;
         }
-
-
     }
 }

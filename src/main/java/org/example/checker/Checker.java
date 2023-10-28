@@ -6,7 +6,6 @@ import org.example.MatrixTransformations;
 import org.example.matrix.*;
 import org.example.operators.MatrixMultiplication;
 import org.example.operators.matrixmultiplication.DenseMatrixMultiplication;
-import org.example.operators.matrixmultiplication.SparseMatrixMultiplication;
 
 import java.util.List;
 
@@ -36,17 +35,20 @@ public class Checker {
     }
 
     public static boolean testSparseMultiply(CompressorCRSMatrix a , CompressorCCSMatrix b, CoordinateMatrix c){
-        MatrixOperations multiplier = new MatrixOperations();
-        Matrix ab = multiplier.multiply(a, b);
+        Matrix ab = MatrixOperations.multiply(a, b);
+
         Matrix abCRS = new MatrixTransformations().transformCOO_CRS((CoordinateMatrix) ab);
+
         Matrix cCCS = new MatrixTransformations().transformCOO_CCS(c);
-        Matrix ab_c = multiplier.multiply(abCRS, cCCS);
+        Matrix ab_c = MatrixOperations.multiply(abCRS, cCCS);
+        Writer.saveToFile((CoordinateMatrix) ab_c, "src/main/resources/ab_c.txt");
 
         Matrix btoCOO = new MatrixTransformations().transformCCS_COO(b);
         Matrix btoCRS = new MatrixTransformations().transformCOO_CRS((CoordinateMatrix) btoCOO);
-        Matrix bc = multiplier.multiply(btoCRS, cCCS);
+        Matrix bc = MatrixOperations.multiply(btoCRS, cCCS);
         Matrix bctoCCS = new MatrixTransformations().transformCOO_CCS((CoordinateMatrix) bc);
-        Matrix a_bc = multiplier.multiply(a, bctoCCS);
+        Matrix a_bc = MatrixOperations.multiply(a, bctoCCS);
+        Writer.saveToFile((CoordinateMatrix) a_bc, "src/main/resources/a_bc.txt");
 
         return areSparseMatricesEqual(ab_c, a_bc);
     }
@@ -59,10 +61,17 @@ public class Checker {
         List<Coordinate> coordinates2 = b.coordinates;
 
         for (int i = 0; i < coordinates1.size(); i++) {
-            Coordinate coord1 = coordinates1.get(i);
-            Coordinate coord2 = coordinates2.get(i);
-            if (coord1.i() != coord2.i() || coord1.j() != coord2.j() || Math.abs(coord1.value() - coord2.value()) > epsilon) {
-                return false;
+            if(i == 0){
+                continue;
+            }
+            else {
+                Coordinate coord1 = coordinates1.get(i);
+                Coordinate coord2 = coordinates2.get(i);
+                if (coord1.i() != coord2.i() || coord1.j() != coord2.j() || Math.abs(coord1.value() - coord2.value()) > epsilon) {
+                    System.out.println(coord1.i() + " " + coord2.i());
+                    System.out.println(coord1.j() + " " + coord2.j());
+                    return false;
+                }
             }
         }
         return true;

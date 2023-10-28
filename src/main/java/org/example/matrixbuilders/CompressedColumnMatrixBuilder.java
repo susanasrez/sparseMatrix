@@ -1,6 +1,5 @@
 package org.example.matrixbuilders;
 
-
 import org.example.Matrix;
 import org.example.matrix.CompressorCCSMatrix;
 import org.example.matrix.Coordinate;
@@ -10,11 +9,9 @@ public class CompressedColumnMatrixBuilder extends SparseMatrixBuilder {
     public int[] columnPointers;
     public int[] rowInd;
     public double[] values;
-
     public int size;
-    private int[] colStarts;
-    private int[] colEnds;
-
+    private final int[] colStarts;
+    private final int[] colEnds;
 
     public CompressedColumnMatrixBuilder(int size) {
         super(size);
