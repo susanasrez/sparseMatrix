@@ -5,8 +5,8 @@ import org.example.testSuite.TimeMarkStateSparse;
 
 public class Controller {
 
-    public Controller(String matrxi){
+    public Controller(String matrix){
         new TimeMarkStateSparse.Operands().setup();
-        new TimeMarkBiggestMatrix.Operands(matrxi).setup();
+        new TimeMarkBiggestMatrix.Operands(matrix).setup();
     }
 }
